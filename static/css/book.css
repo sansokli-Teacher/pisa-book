@@ -5,6 +5,17 @@
   font-weight: 100 900;
   font-display: swap;
 }
+/* Khmer M1 / M2 (LIM Sovanvichet, GNU LGPL 2.1): only the minister's quotation page uses them */
+@font-face {
+  font-family: 'Khmer M1 Web';
+  src: local('Khmer M1'), url('../fonts/KhmerM1.woff') format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Khmer M2 Web';
+  src: local('Khmer M2'), url('../fonts/KhmerM2.woff') format('woff');
+  font-display: swap;
+}
 :root {
   --dark: #102a43;
   --blue: #17365d;
@@ -156,6 +167,21 @@ table.spec th { width: 32%; background: var(--light-gray); font-family: var(--he
 .toc-list a { display: flex; gap: 10px; padding: 6px 4px; border-bottom: 1px solid #eef1f3; text-decoration: none; font-family: var(--head); }
 .toc-list .n { min-width: 1.6em; color: var(--teal); font-weight: 700; }
 
+/* ---- minister's quotation (front matter) ---- */
+.quote-page { max-width: 780px; margin: 0 auto; color: var(--dark); }
+.quote-portrait { margin: 8px 0 36px; }
+.quote-portrait img.fig { width: 460px; max-width: 100%; background: none; }
+.quote-text { font-family: 'Khmer M2 Web', 'Khmer M2', var(--head); }
+.content .quote-lead { max-width: 700px; margin: 0 auto 20px; font-size: 23px; line-height: 2.05; text-align: center; }
+.quote-points { list-style: none; width: fit-content; max-width: 100%; margin: 0 auto; padding: 0; font-size: 19px; line-height: 2.1; }
+.quote-points li { display: flex; gap: .45em; margin: 0; }
+.quote-points .qn { flex: none; color: var(--amber); }
+.quote-sign { width: 62%; margin: 44px 0 0 auto; text-align: center; }
+.content .quote-sign p { margin: 0; text-align: center; }
+.content .sign-intro, .content .sign-office { color: var(--mid-gray); }
+.content .sign-name { margin: 6px 0 2px; font-family: 'Khmer M1 Web', 'Khmer M1', var(--head); font-size: 21px; color: var(--dark); }
+.sign-rule { width: 84px; margin: 8px auto 10px; border: 0; border-top: 1.5px solid var(--amber); }
+
 /* ---- small screens ---- */
 @media (max-width: 900px) {
   .menu-btn { display: inline-block; }
@@ -166,6 +192,9 @@ table.spec th { width: 32%; background: var(--light-gray); font-family: var(--he
   h1 { font-size: 25px; }
   .hero { flex-direction: column; align-items: flex-start; }
   .hero .cover { max-width: 60%; }
+  .content .quote-lead { font-size: 20px; }
+  .quote-points { font-size: 17px; }
+  .quote-sign { width: 100%; }
   body { font-size: 16.5px; }
 }
 @media print {
