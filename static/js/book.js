@@ -132,14 +132,14 @@
   var box = null;
   function closeBox() { if (box) { box.remove(); box = null; body.classList.remove('no-scroll'); } }
   doc.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a.fig-link');
+    var a = e.target.closest && (e.target.closest('a.fig-link') || e.target.closest('article img.photo'));
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
     box = doc.createElement('div');
     box.className = 'lightbox';
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-label', 'រូបភាពពេញទំហំ');
-    box.innerHTML = '<button class="icon-btn" type="button" aria-label="បិទ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><img alt="" src="' + esc(a.getAttribute('href')) + '">';
+    box.innerHTML = '<button class="icon-btn" type="button" aria-label="បិទ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><img alt="" src="' + esc(a.getAttribute('href') || a.getAttribute('src')) + '">';
     box.addEventListener('click', closeBox);
     body.appendChild(box);
     body.classList.add('no-scroll');

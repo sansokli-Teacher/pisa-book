@@ -42,6 +42,8 @@
   --body: 'Battambang', 'Noto Sans Khmer Local', 'Khmer OS Battambang', serif;
   --head: 'Noto Sans Khmer Local', 'Noto Sans Khmer', sans-serif;
   --fs: 17.5px;
+  --photo-w: 460px;       /* a photograph set at the full text width in print is at most this wide */
+  --photo-h: 330px;       /* ... and no picture taller than this (a square one would fill the screen) */
   --side-w: 296px;
   --otp-w: 250px;
   --top-h: 58px;
@@ -211,7 +213,13 @@ figure { margin: 24px 0; text-align: center; }
 img.fig, img.photo { max-width: 100%; height: auto; }
 img.fig { background: var(--fig); border-radius: 6px; }
 img.photo { border-radius: 6px; }
-img.fig.wide { width: 100%; max-width: 900px; }
+/* Pictures are kept modest (author, 2026-10-01): a drawing at the size it has in print, never
+   stretched to the column; a photograph within its print share of --photo-w and within --photo-h.
+   A click opens either large. */
+/* no percentage in the width itself: inside a side-by-side block (.mini) the block takes its width from the picture */
+img.photo { width: min(calc(var(--w, 1) * var(--photo-w)), calc(var(--photo-h) * var(--ar, 1.5))); aspect-ratio: var(--ar, auto); cursor: zoom-in; }
+/* a picture in a table cell, beside text: the table may not squeeze it to nothing */
+.tbl td img.photo { --photo-w: 240px; --photo-h: 240px; min-width: min(200px, 45vw); }
 .fig-link { cursor: zoom-in; }
 :root[data-theme='dark'] img.fig { padding: 8px; }
 :root[data-theme='sepia'] img.fig { mix-blend-mode: multiply; background: none; }
@@ -356,7 +364,7 @@ body.home .foot { max-width: none; }
 /* ---- minister's quotation (front matter) ---- */
 .quote-page { max-width: 780px; margin: 0 auto; color: var(--dark); }
 .quote-portrait { margin: 8px 0 36px; }
-.quote-portrait img.fig { width: 460px; max-width: 100%; background: none; padding: 0; mix-blend-mode: normal; }
+.quote-portrait img.fig { width: 400px; max-width: 100%; background: none; padding: 0; mix-blend-mode: normal; }
 .quote-text { font-family: 'Khmer M2 Web', 'Khmer M2', var(--head); }
 .content .quote-lead { max-width: 700px; margin: 0 auto 20px; font-size: 1.32em; line-height: 2.05; text-align: center; }
 .quote-points { list-style: none; width: fit-content; max-width: 100%; margin: 0 auto; padding: 0; font-size: 1.09em; line-height: 2.1; }
