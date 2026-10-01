@@ -361,6 +361,26 @@ body.home .foot { max-width: none; }
 .toc-list a:hover { background: var(--teal-soft); color: var(--dark); }
 .toc-list .n { min-width: 1.4em; color: var(--teal); font-weight: 700; }
 
+/* ---- names in the book's display face, Khmer M1: signatures and the committee ---- */
+.m1 { font-family: 'Khmer M1 Web', 'Khmer M1', var(--head); font-weight: 400; color: var(--dark); }
+.sign { margin-top: 2.2em; }
+.sign .m1 { font-size: 1.22em; }
+.cm { margin-top: 1.4em; font-family: var(--head); }
+.cm-h { margin: 1.6em 0 .2em; padding-bottom: 6px; border-bottom: 1px solid var(--line-2); color: var(--teal); font-weight: 700; font-size: 1.02em; }
+.cm-list { list-style: none; margin: 0; padding: 0; }
+.cm-list li { display: grid; grid-template-columns: 2.4em minmax(11.5em, 1.05fr) minmax(0, 1.5fr) auto; gap: 2px 14px; align-items: baseline; margin: 0; padding: 9px 6px; border-bottom: 1px solid var(--line); }
+.cm-list li:hover { background: var(--surface-2); }
+.cm-n { color: var(--muted); text-align: right; }
+.cm-hon { color: var(--ink-2); }
+.cm-name { font-size: 1.08em; }
+.cm-role { color: var(--muted); font-size: .9em; }
+.cm-pos { justify-self: end; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: .8em; white-space: nowrap; }
+.cm-pos.cm-lead { background: var(--teal-soft); color: var(--teal); font-weight: 700; }
+@media (max-width: 760px) {
+  .cm-list li { grid-template-columns: 2.2em minmax(0, 1fr) auto; }
+  .cm-role { grid-column: 2 / 4; grid-row: 2; }
+}
+
 /* ---- minister's quotation (front matter) ---- */
 .quote-page { max-width: 780px; margin: 0 auto; color: var(--dark); }
 .quote-portrait { margin: 8px 0 36px; }
