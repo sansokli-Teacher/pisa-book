@@ -5,98 +5,125 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>បុព្វកថា — ក្របខណ្ឌគណិតវិទ្យារបស់ PISA ២០២២</title>
 <meta name="description" content="ក្របខណ្ឌគណិតវិទ្យារបស់ PISA ២០២២">
-<link rel="stylesheet" href="static/fonts/battambang.css?v=2b850201d6">
+<meta name="theme-color" content="#102a43">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('bk-theme'),s=localStorage.getItem('bk-size');if(t)d.setAttribute('data-theme',t);if(s)d.setAttribute('data-size',s);}catch(e){}})();</script>
+<link rel="stylesheet" href="static/fonts/battambang.css?v=08bc501fba">
 <link rel="stylesheet" href="static/katex/katex.min.css">
-<link rel="stylesheet" href="static/css/book.css?v=2b850201d6">
+<link rel="stylesheet" href="static/css/book.css?v=08bc501fba">
 </head>
-<body>
+<body class="reading">
+<a class="skip" href="#content">រំលងទៅអត្ថបទ</a>
+<div class="progress" aria-hidden="true"><span id="progress"></span></div>
 <header class="top">
-  <button class="menu-btn" id="menu-btn" aria-label="មាតិកា" aria-controls="side" aria-expanded="false">☰</button>
-  <a class="brand" href="index.html">ក្របខណ្ឌគណិតវិទ្យារបស់ PISA ២០២២</a>
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="មាតិកា" aria-controls="side" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.3 9.5 4.3 12 6c2.5-1.7 5.5-1.7 8-.5V18c-2.5-1.2-5.5-1.2-8 .5-2.5-1.7-5.5-1.7-8-.5zM12 6v12.5"/></svg></span><span class="brand-text">ក្របខណ្ឌគណិតវិទ្យារបស់ PISA ២០២២</span></a>
   <span class="draft-tag">សេចក្តីព្រាងមាតិកា ០.៦</span>
-  <a class="top-link" href="https://cba.khmermath.org" target="_blank" rel="noopener">តេស្តលើកុំព្យូទ័រ ↗</a>
+  <div class="top-actions">
+    <button class="search-btn" id="search-btn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><span>ស្វែងរកក្នុងសៀវភៅ</span><kbd>/</kbd></button>
+    <button class="icon-btn aa-btn" id="aa-btn" type="button" aria-label="កំណត់ការអាន" aria-expanded="false" aria-controls="aa-panel">Aa</button>
+    <a class="top-link" href="https://cba.khmermath.org" target="_blank" rel="noopener">តេស្ត CBA ↗</a>
+  </div>
 </header>
+<div class="aa-panel" id="aa-panel" hidden>
+  <div class="aa-row"><span class="aa-label">ទំហំអក្សរ</span>
+    <div class="aa-seg" role="group" aria-label="ទំហំអក្សរ"><button type="button" data-size="s">ក<small>តូច</small></button><button type="button" data-size="m">ក<small>ធម្មតា</small></button><button type="button" data-size="l">ក<small>ធំ</small></button><button type="button" data-size="xl">ក<small>ធំណាស់</small></button></div></div>
+  <div class="aa-row"><span class="aa-label">ពណ៌ទំព័រ</span>
+    <div class="aa-seg aa-themes" role="group" aria-label="ពណ៌ទំព័រ"><button type="button" data-theme="light"><i class="sw sw-light"></i>ភ្លឺ</button><button type="button" data-theme="sepia"><i class="sw sw-sepia"></i>ក្រដាស</button><button type="button" data-theme="dark"><i class="sw sw-dark"></i>ងងឹត</button></div></div>
+</div>
+<div class="search" id="search" hidden role="dialog" aria-modal="true" aria-label="ស្វែងរកក្នុងសៀវភៅ">
+  <div class="search-box">
+    <div class="search-top"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input id="search-in" type="search" placeholder="ស្វែងរកពាក្យ ឬឃ្លា ក្នុងសៀវភៅ…" autocomplete="off" spellcheck="false" aria-label="ស្វែងរក"><button class="icon-btn" id="search-close" type="button" aria-label="បិទ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="search-out" id="search-out" aria-live="polite"><p class="search-hint">វាយពាក្យ ឬឃ្លា យ៉ាងតិចពីរតួអក្សរ។ ឧទាហរណ៍៖ អក្ខរកម្មគណិតវិទ្យា, Formulate, អត្រាកំណែ</p></div>
+  </div>
+</div>
 <div class="layout">
-<nav class="side" id="side"><div class="side-inner">
-<a class="side-home" href="index.html">ទំព័រដើម</a>
-<div class="side-group">ផ្នែកខាងមុខ</div>
-<ul>
-<li><a href="front-copyright-disclaimer.html">ព័ត៌មានអំពីសៀវភៅ</a>
-</li>
-<li><a href="front-minister-quotation.html">សម្រង់ប្រសាសន៍</a>
-</li>
-<li class="cur"><a href="front-leadership-message.html">បុព្វកថា</a>
-</li>
-<li><a href="front-preface-author.html">សេចក្តីផ្តើម</a>
-</li>
-<li><a href="front-acknowledgements.html">សេចក្តីថ្លែងអំណរគុណ</a>
-</li>
-<li><a href="front-committee.html">ក្រុមការងារបច្ចេកទេស</a>
-</li>
-<li><a href="front-teacher-guide-notice.html">អំពីសៀវភៅនេះ</a>
-</li>
-<li><a href="front-how-to-use-teacher-guide.html">របៀបប្រើប្រាស់សៀវភៅនេះ</a>
-</li>
-<li><a href="front-how-to-use-student-book.html">របៀបប្រើសៀវភៅសិស្ស</a>
-</li>
-</ul>
+<nav class="side" id="side" aria-label="មាតិកា"><div class="side-inner">
+<a class="side-home" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.3 9.5 4.3 12 6c2.5-1.7 5.5-1.7 8-.5V18c-2.5-1.2-5.5-1.2-8 .5-2.5-1.7-5.5-1.7-8-.5zM12 6v12.5"/></svg><span>ទំព័រដើមនៃសៀវភៅ</span></a>
 <div class="side-group">ជំពូក</div>
 <ul>
-<li><a href="chapter-01.html"><span class="n">១</span>PISA និងអក្ខរកម្មគណិតវិទ្យា</a>
+<li><a href="chapter-01.html"><span class="n">១</span><span>PISA និងអក្ខរកម្មគណិតវិទ្យា</span></a>
 </li>
-<li><a href="chapter-02.html"><span class="n">២</span>ការផ្តល់ហេតុផលតាមបែបគណិតវិទ្យា និងលំនាំគណិតវិទ្យា</a>
+<li><a href="chapter-02.html"><span class="n">២</span><span>ការផ្តល់ហេតុផលតាមបែបគណិតវិទ្យា និងលំនាំគណិតវិទ្យា</span></a>
 </li>
-<li><a href="chapter-03.html"><span class="n">៣</span>ចំណេះដឹងលើខ្លឹមសារ គណិតវិទ្យា</a>
+<li><a href="chapter-03.html"><span class="n">៣</span><span>ចំណេះដឹងលើខ្លឹមសារ គណិតវិទ្យា</span></a>
 </li>
-<li><a href="chapter-04.html"><span class="n">៤</span>បរិបទ</a>
+<li><a href="chapter-04.html"><span class="n">៤</span><span>បរិបទ</span></a>
 </li>
-<li><a href="chapter-05.html"><span class="n">៥</span>ជំនាញសតវត្សទី២១ និងទម្រង់សំណួរ</a>
+<li><a href="chapter-05.html"><span class="n">៥</span><span>ជំនាញសតវត្សទី២១ និងទម្រង់សំណួរ</span></a>
 </li>
-<li><a href="chapter-06.html"><span class="n">៦</span>ឧទាហរណ៍គំរូ PISA</a>
+<li><a href="chapter-06.html"><span class="n">៦</span><span>ឧទាហរណ៍គំរូ PISA</span></a>
 </li>
-<li><a href="chapter-07.html"><span class="n">៧</span>គណិតវិទ្យាតាមបែប PISA នៅមធ្យមសិក្សា</a>
+<li><a href="chapter-07.html"><span class="n">៧</span><span>គណិតវិទ្យាតាមបែប PISA នៅមធ្យមសិក្សា</span></a>
 </li>
-<li><a href="chapter-08.html"><span class="n">៨</span>ឧបករណ៍សម្រាប់គ្រូ</a>
+<li><a href="chapter-08.html"><span class="n">៨</span><span>ឧបករណ៍សម្រាប់គ្រូ</span></a>
 </li>
-<li><a href="chapter-09.html"><span class="n">៩</span>តេស្តគំរូសម្រាប់ថ្នាក់ទី ៧ ដល់ទី ៩</a>
+<li><a href="chapter-09.html"><span class="n">៩</span><span>តេស្តគំរូសម្រាប់ថ្នាក់ទី ៧ ដល់ទី ៩</span></a>
 </li>
 </ul>
 <div class="side-group">ឧបសម្ព័ន្ធ</div>
 <ul>
-<li><a href="appendix-1.html">ចម្លើយ និងអត្រាកំណែ</a>
+<li><a href="appendix-1.html"><span>ចម្លើយ និងអត្រាកំណែ</span></a>
 </li>
-<li><a href="appendix-2.html">ពាក្យបច្ចេកទេស</a>
+<li><a href="appendix-2.html"><span>ពាក្យបច្ចេកទេស</span></a>
 </li>
-<li><a href="appendix-3.html">កម្រិតសមត្ថភាព PISA</a>
+<li><a href="appendix-3.html"><span>កម្រិតសមត្ថភាព PISA</span></a>
 </li>
-<li><a href="appendix-4.html">ឯកសារយោង និងប្រភពគម្រោង</a>
+<li><a href="appendix-4.html"><span>ឯកសារយោង និងប្រភពគម្រោង</span></a>
 </li>
 </ul>
+<details class="side-fold" open><summary class="side-group">ផ្នែកខាងមុខ</summary>
 <ul>
-<li><a href="back-community.html">ចូលរួមសហគមន៍ PISA Math &amp; AI</a>
+<li><a href="front-copyright-disclaimer.html"><span>ព័ត៌មានអំពីសៀវភៅ</span></a>
+</li>
+<li><a href="front-minister-quotation.html"><span>សម្រង់ប្រសាសន៍</span></a>
+</li>
+<li class="cur"><a href="front-leadership-message.html" aria-current="page"><span>បុព្វកថា</span></a>
+</li>
+<li><a href="front-preface-author.html"><span>សេចក្តីផ្តើម</span></a>
+</li>
+<li><a href="front-acknowledgements.html"><span>សេចក្តីថ្លែងអំណរគុណ</span></a>
+</li>
+<li><a href="front-committee.html"><span>ក្រុមការងារបច្ចេកទេស</span></a>
+</li>
+<li><a href="front-teacher-guide-notice.html"><span>អំពីសៀវភៅនេះ</span></a>
+</li>
+<li><a href="front-how-to-use-teacher-guide.html"><span>របៀបប្រើប្រាស់សៀវភៅនេះ</span></a>
+</li>
+<li><a href="front-how-to-use-student-book.html"><span>របៀបប្រើសៀវភៅសិស្ស</span></a>
 </li>
 </ul>
+</details>
+<ul>
+<li><a href="back-community.html"><span>ចូលរួមសហគមន៍ PISA Math &amp; AI</span></a>
+</li>
+</ul>
+<div class="side-links"><a href="https://cba.khmermath.org" target="_blank" rel="noopener">តេស្តលើកុំព្យូទ័រ (CBA) ↗</a><a href="https://khmermath.org" target="_blank" rel="noopener">KhmerMath ↗</a><a href="licence.html">ប្រភព និងអាជ្ញាប័ណ្ណ</a></div>
 </div></nav>
+<div class="scrim" id="scrim"></div>
 <main class="content" id="content">
-<div class="chap-head"><h1>បុព្វកថា</h1></div>
+<article class="page" data-where="បុព្វកថា">
+<header class="chap-head"><div class="chap-num">ផ្នែកខាងមុខ</div><h1>បុព្វកថា</h1></header>
 <p>kh"</p>
 <p>ការត្រៀមសិស្សរបស់យើងសម្រាប់ PISA ២០២៩ មិនមែនគ្រាន់តែជាការបន្ថែមលំហាត់ឱ្យសិស្សធ្វើ នោះទេ។ នេះជាការប្តេជ្ញាចិត្តរួមរបស់សាលារៀនទាំងមូល ក្នុងការជួយឱ្យសិស្សចេះគិតវែកញែក ចេះយកគណិតវិទ្យាទៅប្រើក្នុងស្ថានភាពថ្មីៗដែលមិនធ្លាប់ជួប និងចេះពន្យល់ហេតុផលរបស់ខ្លួនដោយទំនុកចិត្ត។ សៀវភៅនេះគាំទ្របេសកកម្មដ៏សំខាន់នោះ ដោយផ្សារភ្ជាប់កម្មវិធីសិក្សាគណិតវិទ្យាកម្ពុជា ជាមួយនឹង បរិបទ តាមបែប PISA យុទ្ធសាស្ត្រដោះស្រាយបញ្ហា និងអត្រាកំណែ។</p>
 <p>សូមលើកទឹកចិត្តគ្រូបង្រៀនឱ្យប្រើសៀវភៅនេះជាឧបករណ៍ជំនួយជាក់ស្តែងក្នុងថ្នាក់រៀន។ លំហាត់ ដែលបាន ជ្រើសរើសទាំងនេះ អាចប្រើសម្រាប់មេរៀនប្រចាំថ្ងៃ ការងារជាក្រុម ការត្រៀមវាយតម្លៃ ការពង្រីកចំណេះដឹង និងការពិភាក្សាវិជ្ជាជីវៈរវាងគ្រូបង្រៀន។ ចំពោះសិស្សានុសិស្សវិញ សូមលើកទឹកចិត្តឱ្យ អានស្ថានភាពជាក់ស្តែងនីមួយៗដោយយកចិត្តទុកដាក់ ចេះសួរសំណួរ ចេះសាកល្បងការស្មានរបស់ខ្លួន និង ពន្យល់វិធីសាស្ត្ររបស់ខ្លួនឱ្យបានច្បាស់លាស់ ដោយមិនផ្តោតតែលើចម្លើយជាលេខចុងក្រោយប៉ុណ្ណោះ។</p>
 <p>ក្នុងនាមថ្នាក់ដឹកនាំសាលារៀន ខ្ញុំបាទសូមគាំទ្រការបោះពុម្ពផ្សាយសៀវភៅនេះដោយក្ដីរីករាយជា ផ្នែកមួយ នៃការខិតខំប្រឹងប្រែងរួមគ្នារបស់យើង ក្នុងការពង្រឹងអក្ខរកម្មគណិតវិទ្យានៅកម្ពុជា។ ខ្ញុំបាទក៏ សូមអញ្ជើញ គ្រូបង្រៀន និងសិស្សានុសិស្សទាំងអស់ ចែករំលែកបទពិសោធន៍ក្នុងថ្នាក់រៀន បញ្ហាប្រឈមក្នុង ការបង្រៀន ការកែតម្រូវ និងគំនិតច្នៃប្រឌិតថ្មីៗ ដើម្បីឱ្យសៀវភៅនេះកាន់តែល្អប្រសើរឡើងថែមទៀត។</p>
-<div class="right"><p>សម្យ កំសាន្ត</p></div><nav class="pager"><a class="prev" href="front-minister-quotation.html">◀ សម្រង់ប្រសាសន៍</a><a class="next" href="front-preface-author.html">សេចក្តីផ្តើម ▶</a></nav>
-</main>
-</div>
+<div class="right"><p>សម្យ កំសាន្ត</p></div><nav class="pager" aria-label="ទំព័រមុន និងបន្ទាប់"><a class="prev" href="front-minister-quotation.html" rel="prev"><small>◀ ទំព័រមុន</small><b>សម្រង់ប្រសាសន៍</b></a><a class="next" href="front-preface-author.html" rel="next"><small>ទំព័របន្ទាប់ ▶</small><b>សេចក្តីផ្តើម</b></a></nav>
+</article>
 <footer class="foot">
   <div class="foot-cta">
     <p class="vc-foot" data-vc-box hidden><span class="vc-eye" aria-hidden="true">◉</span> អ្នកចូលមើល <b data-vc="visitors">—</b> នាក់ · ថ្ងៃនេះ <b data-vc="today">—</b> នាក់ · មកពី <b data-vc="countries">—</b> ប្រទេស <span class="vc-flags" data-vc-flags="8"></span></p>
     <p class="foot-help"><a class="fh-btn" href="https://t.me/pisamathAI" target="_blank" rel="noopener">✎ ឃើញកំហុស? ប្រាប់យើងតាម Telegram</a> <a class="fh-btn fh-heart" href="https://khmermath.org/about.html#support" target="_blank" rel="noopener">♥ គាំទ្រ KhmerMath</a></p>
   </div>
   <p>ក្របខណ្ឌគណិតវិទ្យារបស់ PISA ២០២២ — សាន សុខលី · សេចក្តីព្រាងមាតិកា ០.៦</p>
-  <p>សៀវភៅនេះជាឯកសារអប់រំរបស់គម្រោង មិនមែនជាការបោះពុម្ពផ្សាយផ្លូវការរបស់ OECD ឬ PISA ទេ។ <a href="licence.html">ប្រភព និងអាជ្ញាប័ណ្ណ</a></p>
+  <p>សៀវភៅនេះជាឯកសារអប់រំរបស់គម្រោង មិនមែនជាការបោះពុម្ពផ្សាយផ្លូវការរបស់ OECD ឬ PISA ទេ។ <a href="licence.html">ប្រភព និងអាជ្ញាប័ណ្ណ</a> · <a href="https://khmermath.org" target="_blank" rel="noopener">khmermath.org</a></p>
 </footer>
+</main>
+<aside class="otp" id="otp" aria-label="នៅលើទំព័រនេះ" hidden><div class="otp-inner"><div class="otp-t">នៅលើទំព័រនេះ</div><ol id="otp-list"></ol></div></aside>
+</div>
+<button class="to-top" id="to-top" type="button" aria-label="ទៅខាងលើ" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6"/></svg></button>
 <script src="static/katex/katex.min.js"></script>
 <script src="static/katex/contrib/auto-render.min.js"></script>
-<script src="static/js/book.js?v=2b850201d6"></script>
-<script src="static/js/visits.js?v=2b850201d6" data-site="pisa" defer></script>
+<script src="static/js/book.js?v=08bc501fba"></script>
+<script src="static/js/visits.js?v=08bc501fba" data-site="pisa" defer></script>
 </body>
 </html>

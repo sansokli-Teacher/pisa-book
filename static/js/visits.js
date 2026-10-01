@@ -77,10 +77,14 @@
     document.querySelectorAll('[data-vc-box]').forEach(function (el) { el.hidden = false; el.classList.add('vc-ready'); });
   }
 
+  // pages drawn later (the CBA app's home page) ask for the numbers again
+  var got = null;
+  window.kmVisits = { refresh: function () { if (got) render(got); } };
+
   var req = live
     ? fetch(API + '/hit?new=' + (isNew ? 1 : 0) + '&site=' + encodeURIComponent(site), { method: 'POST', credentials: 'omit' })
     : fetch(API + '/stats', { credentials: 'omit' });
   req.then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (s) { if (s && s.countries) render(s); })
+    .then(function (s) { if (s && s.countries) { got = s; render(s); } })
     .catch(function () { /* offline or blocked: the counters simply stay hidden */ });
 })();
